@@ -1,12 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 
-void getChars(unsigned char * c);
-
-void char2case() {
+void char2case(unsigned char * c) {
 	while (!feof(stdin)) {
-		unsigned char c[256];
-		getChars(&c[0]);
 		int j = 0;
 
 		while (c[j] != 0) {
