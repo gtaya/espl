@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 
 void echo_printer(char c);
@@ -34,7 +32,7 @@ int main(int argc, char** argv) {
 					funcs[1].name,
 					funcs[2].name,
 					funcs[3].name);
-	while (option[0] != '\0' && !feof(stdin)) {
+	while (!feof(stdin)) {
 		printf("Option: ");
 		string_reader(option);
 		int num;
@@ -42,8 +40,10 @@ int main(int argc, char** argv) {
 			num = -1;
 		else
 			sscanf(option, "%d", &num);
-		if (num < 0 || num > 4)
-			printf("Invalid option. Select 0-4 or CTRL-D to exit.\n");
+		if ((num < 0 || num > 4)) {
+			if (!feof(stdin))
+				printf("Select 0-4 or CTRL-D to exit.\n");
+		}
 		else if (num == 4)
 			bitwise_or(str);
 		else

@@ -43,10 +43,9 @@ void string_printer(char* str, void (*func_ptr) (char)) {
 }
 
 void string_reader(char* s) {
-	char* temp;
-	if ((temp = fgets(s, sizeof(s), stdin)) != NULL) {
-		s = temp;
-	}
+	int max = 10;
+	fgets(s, max, stdin);
+	s[strlen(s)-1] = '\0';
 }
 
 void bitwise_or(char* s) {
