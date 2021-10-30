@@ -1,22 +1,9 @@
 #include <stdio.h>
-#include <string.h>
 
-void getChars(unsigned char * a);
+void getChars(unsigned char * c) {
+	int j = 0, i = 0;
 
-void char2ascii() {
-	while (!feof(stdin)) {
-		unsigned char c[256];
-		getChars(&c[0]);
-		int j = 0;
-
-		while (c[j] != 0) {
-			printf("%d", c[j]);
-			if (c[j+1] != 0)
-				printf("%s", " ");
-			j++;
-		}
-
-		printf("%s", "\n");
-		break;
-	}
+	while((j = fgetc(stdin)) != '\n')
+		c[i++] = (char)j;
+	c[i] = 0;
 }
