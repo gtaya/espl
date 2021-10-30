@@ -43,10 +43,9 @@ void string_printer(char* str, void (*func_ptr) (char)) {
 }
 
 void string_reader(char* s) {
-	char* temp;
-	if ((temp = fgets(s, 10, stdin)) != NULL) {
-		s = temp;
-	}
+	int max = 10;
+	fgets(s, max, stdin);
+	s[strlen(s)-1] = '\0';
 }
 
 void bitwise_or(char* s) {
@@ -56,9 +55,9 @@ void bitwise_or(char* s) {
 		res = res | s[i];
 	}
 	binary_printer(res);
+	printf("%s", "\n");
 }
 
 int main(int argc, char** argv) {
-	string_printer("hi", ascii_printer);
 	return 0;
 }
