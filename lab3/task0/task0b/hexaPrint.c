@@ -4,10 +4,9 @@ void PrintHex(unsigned char* buffer, int length) {
 	int i;
 	for (i = 0; i < length; i++) {
 		printf("%02X", buffer[i]);
-		if (i+1 < length)
+		if (buffer[i] != '\n')
 			printf("%s", " ");
 	}
-	printf("%s", "\n");
 }
 
 int main(int argc, char** argv) {
@@ -21,6 +20,7 @@ int main(int argc, char** argv) {
 			PrintHex(&buffer[0], bytes_read);
 		}
 	}
+	printf("%s", "\n");
 
 	fclose(binfile);
 	return 0;
