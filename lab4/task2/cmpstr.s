@@ -5,29 +5,33 @@ cmpstr:
 	push ebp
 	push ebx
 	mov ebp, esp
-	mov [eax], DWORD 0
+	mov ecx, -1	;initiate str index
 
-	mov ebx, [ebp+12] ;get ptr to str1
-	mov ecx, [ebp+16] ;get ptr to str2
 str_loop:
-	mov dl, BYTE [ebx] ;move char of str1 to dl
-	sub dl, BYTE [ecx] ;sub chars of str1 and str2
-	mov [eax], dl ;assign sub result to eax
-	int i = 0, diff = 0;
+	add ecx, 1		;increment index
+	mov eax, ecx
+	mov ebx, ecx	
+	add eax, [ebp+12]	;get ptr to char1
+	movzx eax, BYTE [eax]	;replace ptr with char1 val
+	add ebx, [ebp+16]	;get ptr to char2 
+	movzx ebx, BYTE [ebx]	;replace ptr with char2 val
+	
+	test al, al	;check if str1 reached its' end
+	je diff
+	test bl, bl	;check if str2 reached its' end
+	je diff
 
-	;if eax != 0 || one of the ptrs points to 0
-	test al, al
-	jne diff
-	cmp [ebx], BYTE 0
-	je diff
-	cmp [ecx], BYTE 0
-	je diff
-	;inc each ptr
-	add ebx, 1
-	add ecx, 1
-	jmp str_loop
+	cmp eax, ebx	;compare char1 and char2
+	jne diff	;if ZF is not set, we found a difference
+	jmp str_loop	;else, continue to the next chars	
 	
 diff:
+	sub eax, ebx	;subtract char1 - char2 and store diff in eax
+	jmp exit
+
+exit:
 	mov esp, ebp
 	pop ebx
+	pop ebp
 	ret
+
