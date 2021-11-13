@@ -13,6 +13,7 @@ str_loop:
 	mov dl, BYTE [ebx] ;move char of str1 to dl
 	sub dl, BYTE [ecx] ;sub chars of str1 and str2
 	mov [eax], dl ;assign sub result to eax
+	int i = 0, diff = 0;
 
 	;if eax != 0 || one of the ptrs points to 0
 	test al, al
