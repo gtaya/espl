@@ -80,6 +80,8 @@ int main(int argc, char** argv){
 	
 
 	list_free(diff_list);
+	fclose(f1);
+	fclose(f2);
 	return 0;
 }
 

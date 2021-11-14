@@ -50,7 +50,7 @@ void list_free(node* diff_list){
 
 
 int main(){
-	/*
+
 	FILE* output;
 	output = stdout;
 	diff d1,d2,d3;
@@ -66,7 +66,6 @@ int main(){
 	out =list_append(out, dp3);
 	list_print(out,output);	
 	list_free(out);
-*/
 	return 0;
 	
 
